@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title>Pokemon</title>
+        <link rel="stylesheet" type="text/css" href="http://localhost:3000/style.css" />
+        <link rel="shortcut icon" href="logo.png" type="image/png">
+    
+</head>
+    
+    
+    
+    <div class="navbar">
+      <a href="../../home_page.html">Home</a>
+      <a href="../../track_pokemons_trainers.html">Track Pokemons & Trainers</a>
+      <!-- <a href="../../evolve_pokemons.html">Evolve Pokemons</a> -->
+      <a href="poke_selfie.html">PokeSelfie</a>
+      <div class="dropdown">
+        <button class="dropbtn">More
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="https://en.wikipedia.org/wiki/Pok%C3%A9mon">wikipedia</a>
+          <a href="https://bulbapedia.bulbagarden.net/wiki/Main_Page">bulbapedia</a>
+          <a href="https://www.amazon.com/Pokemon-First-Three-Movies-Various/dp/B07GRJM13B">movies</a>
+          <a href="https://www.nintendo.com/games/pokemon-games/">games</a>
+          <a href="https://www.amazon.com/stores/page/DC6D208A-8D81-4AFA-90C5-616473E94ECA">buy</a>
+    
+        </div>
+      </div>
+    </div>
+
+
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  padding-left: 0em;
+  padding-top: 0em;
+  font-family:"Ink Free", Helvetica, Geneva, Arial, SunSans-Regular, sans-serif ;
+  text-align: center;
+font-size: 25pt; 
+}
+
+img {
+
+  position: absolute;
+  left: 0px;
+  top: 20px;
+  z-index: -1;
+}
+
+#articlesummary img
+{   
+    width:30px; 
+    border: 1px solid red;
+    
+    vertical-align: middle;
+}
+
+#container {
+	margin-left: auto;
+    margin-right: auto;
+	position : center;
+	width: 500px;
+	height: 375px;
+	
+
+}
+#videoElement {
+	width: 500px;
+	height: 375px;
+	background-color: #666;
+}
+<style>
+#image{
+height:100px;
+width:100px;
+}
+
+#image{
+height:100px;
+width:100px;
+}
+
+.center {
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+  	width: 50%;
+}
+
+
+</style>
+
+
+<body>
+	<img src="cam.gif" width="600" height="600">
+		<div id="container">
+		<h1>PokeSelfie</h1>
+	
+	
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<div id="results"></div>
+		<div class="center" id="my_camera">
+
+		</div>
+	
+		<!-- First, include the Webcam.js JavaScript Library -->
+		<script type="text/javascript" src="../webcam.min.js"></script>
+
+		<!-- Configure a few settings and attach camera -->
+		<script language="JavaScript">
+		Webcam.set({
+			width: 320,
+			height: 240,
+			image_format: 'jpeg',
+			jpeg_quality: 90
+		});
+		Webcam.attach( '#my_camera' );
+		</script>
+	
+		<!-- A button for taking snaps -->
+		<form>
+		<input type=button value="Take Snapshot" onClick="take_snapshot()">
+		
+		</form>
+	
+	
+	
+		<!-- Code to handle taking the snapshot and displaying it locally -->
+		<script language="JavaScript">
+		// preload shutter audio clip
+		var shutter = new Audio();
+		shutter.autoplay = false;
+		shutter.src = navigator.userAgent.match(/Firefox/) ? 'shutter.ogg' : 'shutter.mp3';
+		
+		function take_snapshot() 
+		{
+			// play sound effect
+			shutter.play();
+			
+
+			
+			// take snapshot and get image data
+			Webcam.snap( function(data_uri) {
+					document.getElementById('results').innerHTML = 
+					'<h3/><h3>'
+					downloadImage('selfie', data_uri);
+			} );
+			
+    	}
+
+   			// DOWNLOAD THE IMAGE.
+			// client should not have an image in downloads named selfie.png
+   			downloadImage = function (name, datauri) {
+				var a = document.createElement('a');
+				a.setAttribute('download', name + '.png');
+				a.setAttribute('href', datauri);
+				a.click();
+			}
+			
+		</script>
+
+
+			<form action = "http://localhost:3000/pokemons/pokeSelfies" method = "get">
+			<br/><span>Enter Pokemon Name For Your Selfie & Email Address:</span><br/>
+			
+			<input type = "text" name = "pokemon" placeholder="pokemon name"/>
+			<input type = "email" name = "email" placeholder="email"/>
+			<input type = "submit" value = "submit" /></form>
+		
+	   
+</body>
+</html>
